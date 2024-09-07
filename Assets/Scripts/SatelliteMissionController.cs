@@ -13,6 +13,8 @@ public class SatelliteMissionController : MonoBehaviour
     {
         //get elemnet with the name DebugDialog. It has a child with the name Dialog_Text which has a child with the name Text. This is the TextMeshProTextUI object
         assemblyCounterText = GameObject.Find("DebugDialog").transform.Find("Dialog_Text").Find("Text").GetComponent<TMPro.TextMeshProUGUI>();
+        //Wait for 2 seconds and increase the assembly counter
+        StartCoroutine(WaitAndIncreaseAssemblyCounter());
     }
 
     // Update is called once per frame
@@ -43,4 +45,11 @@ public class SatelliteMissionController : MonoBehaviour
         if(assemblyCounterText != null)
             assemblyCounterText.text = "Assembly Counter: " + assemblyCounter;
     }
+
+    private IEnumerator WaitAndIncreaseAssemblyCounter()
+    {
+        yield return new WaitForSeconds(2);
+        UpdateAssemblyCounter();
+    }
+    
 }
