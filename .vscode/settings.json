@@ -51,5 +51,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "RetroSpace.sln"
+    "dotnet.defaultSolution": "RetroSpace.sln",
+    "dotnet.preferCSharpExtension": true,
+    "FSharp.suggestGitignore": false
 }

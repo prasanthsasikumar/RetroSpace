@@ -102,6 +102,25 @@ public class FindSpawnPositionsModified : MonoBehaviour
         }
     }
 
+    public Transform GetNearestTable()
+    {
+        if (MRUK.Instance)
+        {
+            var room = MRUK.Instance.GetCurrentRoom();
+            if (room)
+            {
+                var surfaceType = MRUKAnchor.SceneLabels.TABLE;
+                var table = room.FindLargestSurface(surfaceType);
+                if (table)
+                {
+                    return table.transform;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public void StartSpawn(MRUKRoom room)
     {
         var prefabBounds = Utilities.GetPrefabBounds(SpawnObject);
