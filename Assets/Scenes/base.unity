@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 83148242}
   - component: {fileID: 83148241}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +631,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -694,7 +694,7 @@ Transform:
   m_GameObject: {fileID: 83148240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0953, y: 0.949, z: -1.1681}
+  m_LocalPosition: {x: 1.0953, y: 0.888, z: -1.3144}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -19400,11 +19400,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionPrefabs:
-  - {fileID: 243537430299706755, guid: fce44dc5033e6496a8076fe75a76a526, type: 3}
-  - {fileID: 2608061334558534565, guid: 5fb52d95e38df43f694d531319fb5226, type: 3}
+  - {fileID: 3150936054364736221, guid: 165d6182fac554c26bdb5a41c92e3e3e, type: 3}
+  - {fileID: 6321639633430099918, guid: 12999c83c39f341eebec4c312cdcedfa, type: 3}
+  - {fileID: 141349455633506633, guid: 729cb3126ef1440298d0ddaeb3a6c915, type: 3}
   - {fileID: 6660710508203539231, guid: 7b646b2d3f47b495786b08fbda0f7a00, type: 3}
   spawnPoint: {fileID: 83148244}
-  liftHeight: 1
+  liftHeight: 0.5
 --- !u!114 &3891347023331366839
 MonoBehaviour:
   m_ObjectHideFlags: 0

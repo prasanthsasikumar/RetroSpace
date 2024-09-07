@@ -12,7 +12,7 @@ public class MissionManager : MonoBehaviour
     void Start()
     {
         findSpawnPositionsModfied = FindObjectOfType<FindSpawnPositionsModified>();
-        //SpawnAllPrefabs();
+        SpawnAllPrefabs();
     }
 
     // Update is called once per frame
@@ -23,12 +23,21 @@ public class MissionManager : MonoBehaviour
 
     public void SpawnAllPrefabs()
     {
+        StartCoroutine(SpawnWithDelay());
+    }
+
+    private IEnumerator SpawnWithDelay()
+    {
         //spawnPoint = findSpawnPositionsModfied.GetNearestTable();
         Vector3 UpdatedSpawnPointPosition = new Vector3(spawnPoint.position.x, spawnPoint.position.y + liftHeight, spawnPoint.position.z);
+        
         foreach (GameObject missionPrefab in missionPrefabs)
         {
             GameObject satellitePart = Instantiate(missionPrefab, UpdatedSpawnPointPosition, spawnPoint.rotation);
             satellitePart.transform.SetParent(spawnPoint);
+
+            // Wait for 0.5 seconds (adjust the delay time as needed)
+            yield return new WaitForSeconds(0.4f);
         }
     }
 }
