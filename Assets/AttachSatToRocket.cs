@@ -43,12 +43,18 @@ public class AttachSatToRocket : MonoBehaviour
             transform.Rotate(Random.Range(0f, 360f) * Time.deltaTime, Random.Range(0f, 360f) * Time.deltaTime, Random.Range(0f, 360f) * Time.deltaTime);
 
             // Gradually shrink the satellite to 10% of its original size
-            float scale = Mathf.Lerp(originalScale, targetScale, time / duration);
-            transform.localScale = new Vector3(scale, scale, scale);
+            //float scale = Mathf.Lerp(originalScale, targetScale, time / duration);
+            //transform.localScale = new Vector3(scale, scale, scale);
 
             time += Time.deltaTime;
             yield return null;
         }
         transform.SetParent(rocket.transform);
+        //disable the mesh renderer of the children
+        foreach (Transform child in transform)
+        {
+            child.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+        rocket.GetComponent<CloseTheLidAndLiftOff>().CloseLidAndLiftOff();
     }
 }

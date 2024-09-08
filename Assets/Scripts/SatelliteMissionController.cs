@@ -7,6 +7,12 @@ public class SatelliteMissionController : MonoBehaviour
     public int assemblyCounter = 0, partsRequired = 2;
     public bool shrinkOnAssembly = true;
 
+    public GameObject[] snapPoints;
+    public GameObject mainSnapPoint;
+    private int snapPointIndex = 0;
+
+    private bool isHeatSinkDropped = false;
+
     private TMPro.TextMeshProUGUI assemblyCounterText;
     // Start is called before the first frame update
     void Start()
@@ -14,7 +20,7 @@ public class SatelliteMissionController : MonoBehaviour
         //get elemnet with the name DebugDialog. It has a child with the name Dialog_Text which has a child with the name Text. This is the TextMeshProTextUI object
         assemblyCounterText = GameObject.Find("DebugDialog").transform.Find("Dialog_Text").Find("Text").GetComponent<TMPro.TextMeshProUGUI>();
         //Wait for 2 seconds and increase the assembly counter
-        StartCoroutine(WaitAndIncreaseAssemblyCounter());
+        //StartCoroutine(WaitAndIncreaseAssemblyCounter());
     }
 
     // Update is called once per frame
@@ -37,6 +43,12 @@ public class SatelliteMissionController : MonoBehaviour
             MissionManager missionManager = FindObjectOfType<MissionManager>();
             missionManager.BringRocketToLaunch();
         }
+        else if(!isHeatSinkDropped && assemblyCounter==partsRequired-1)
+        {
+            MissionManager missionManager = FindObjectOfType<MissionManager>();
+            missionManager.DropHeatSink();
+            isHeatSinkDropped = true;
+        }
     }
 
     public void UpdateAssemblyCounter()
@@ -51,5 +63,16 @@ public class SatelliteMissionController : MonoBehaviour
         yield return new WaitForSeconds(2);
         UpdateAssemblyCounter();
     }
+
+    public void UpdateMainSnapPoint()
+    {
+        snapPointIndex++;
+        if(snapPointIndex < snapPoints.Length)
+        {
+            //move mainSnapPoint gameobject to the next snapPoint
+            mainSnapPoint.transform.position = snapPoints[snapPointIndex].transform.position;
+        }
+    }
+    
     
 }

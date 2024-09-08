@@ -6,7 +6,7 @@ public class MissionManager : MonoBehaviour
 {
     public GameObject[] missionPrefabs;
     public Transform spawnPoint;
-    public GameObject completedMissionPrefab;
+    public GameObject completedMissionPrefab, heatSinkPrefab;
     public float liftHeight = 1;
     public bool spawnAtTable = false;
     public GameObject rocketSpawner;
@@ -15,7 +15,7 @@ public class MissionManager : MonoBehaviour
     void Start()
     {
         findSpawnPositionsModfied = FindObjectOfType<FindSpawnPositionsModified>();
-        SpawnAllPrefabs();
+        //SpawnAllPrefabs();
     }
 
     // Update is called once per frame
@@ -39,13 +39,19 @@ public class MissionManager : MonoBehaviour
         foreach (GameObject missionPrefab in missionPrefabs)
         {
             //Adjust updatedSpawn position with a a very small x or z value to avoid overlapping objects. Make it random. Ideally 02.-.4
-            //Vector3 adjustedPosition = new Vector3(UpdatedSpawnPointPosition.x + Random.Range(0.2f, 0.4f), UpdatedSpawnPointPosition.y, UpdatedSpawnPointPosition.z + Random.Range(0.2f, 0.4f));
-            GameObject satellitePart = Instantiate(missionPrefab, UpdatedSpawnPointPosition, spawnPoint.rotation);
+            //get size of missionPrefab
+            float breadth = missionPrefab.GetComponent<Renderer>().bounds.size.x;
+            Vector3 adjustedPosition = new Vector3(UpdatedSpawnPointPosition.x + breadth, UpdatedSpawnPointPosition.y, UpdatedSpawnPointPosition.z);
+            GameObject satellitePart = Instantiate(missionPrefab, adjustedPosition, spawnPoint.rotation);
             satellitePart.transform.SetParent(spawnPoint);
 
             // Wait for 0.5 seconds (adjust the delay time as needed)
             yield return new WaitForSeconds(0.6f);
         }
+    }
+
+    public void DropHeatSink(){
+        Instantiate(heatSinkPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
     public void BringRocketToLaunch()
