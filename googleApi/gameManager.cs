@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.Windows.Speech;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,37 +10,39 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
 
     private bool isListening = true;
+    private DictationRecognizer dictationRecognizer;
+
+    private void Start()
+    {
+        // Initialize the DictationRecognizer for speech input
+        dictationRecognizer = new DictationRecognizer();
+        dictationRecognizer.DictationResult += OnDictationResult;
+        dictationRecognizer.Start();
+    }
 
     private void Update()
     {
         if (isListening)
         {
-            // Here you should capture audio input and process it.
-            // For this example, we'll assume CaptureAudio captures audio data from the microphone.
-            byte[] audioData = CaptureAudio();
-            ProcessSpeechAsync(audioData);
+            // Capture audio input using the DictationRecognizer
+            // Audio data will be processed in the OnDictationResult method
         }
     }
 
-    private async void ProcessSpeechAsync(byte[] audioData)
+    private async void OnDictationResult(string text, ConfidenceLevel confidence)
     {
         isListening = false;
-        string playerSpeech = await speechToText.RecognizeSpeechAsync(audioData);
+        Debug.Log("Player said: " + text);
 
-        if (!string.IsNullOrEmpty(playerSpeech))
+        // Generate AI response based on player speech
+        string aiResponseText = await GenerateAIResponseAsync(text);
+
+        // Convert AI response to speech
+        AudioClip audioClip = await textToSpeech.SynthesizeSpeechAsync(aiResponseText);
+        if (audioClip != null)
         {
-            Debug.Log("Player said: " + playerSpeech);
-
-            // Generate AI response
-            string aiResponseText = await GenerateAIResponseAsync(playerSpeech);
-
-            // Convert AI response to speech
-            AudioClip audioClip = await textToSpeech.SynthesizeSpeechAsync(aiResponseText);
-            if (audioClip != null)
-            {
-                audioSource.clip = audioClip;
-                audioSource.Play();
-            }
+            audioSource.clip = audioClip;
+            audioSource.Play();
         }
 
         isListening = true;
@@ -46,15 +50,18 @@ public class GameManager : MonoBehaviour
 
     private async Task<string> GenerateAIResponseAsync(string playerSpeech)
     {
-        // Implement your AI interaction here
-        // Example: Call OpenAI API to get a response based on playerSpeech
+        // Example AI interaction: Returning a static response for now
+        // You can integrate with an AI service like OpenAI or other APIs
         return "Hello, how can I assist you today?";
     }
 
-    private byte[] CaptureAudio()
+    private void OnDisable()
     {
-        // Implement audio capture logic here
-        // This method should return the recorded audio data as a byte array
-        return new byte[0];
+        // Stop the DictationRecognizer when the object is disabled or destroyed
+        if (dictationRecognizer != null && dictationRecognizer.Status == SpeechSystemStatus.Running)
+        {
+            dictationRecognizer.Stop();
+            dictationRecognizer.Dispose();
+        }
     }
 }
