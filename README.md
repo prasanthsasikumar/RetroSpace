@@ -2,7 +2,7 @@
 
 **Mixed Reality Satellite Assembly & Rocket Launch Simulator**
 
-Built during a 3-day hackathon at **XR Hack Istanbul 2024** — 321 Ignition track.
+Built during a 3-day hackathon at **XR Hack Istanbul 2024**, 321 Ignition track.
 
 [![RetroSpace Demo](https://img.youtube.com/vi/U-tEbfqU1Pk/0.jpg)](https://youtu.be/U-tEbfqU1Pk)
 
@@ -12,10 +12,10 @@ Built during a 3-day hackathon at **XR Hack Istanbul 2024** — 321 Ignition tra
 
 RetroSpace is a mixed reality application designed to enhance learning by simulating satellite assembly and rocket launches. Using space exploration as an example, users assemble satellites interactively, learning about weight distribution and how it affects rocket altitude.
 
-- 🔍 **Room scanning** — the app scans the real environment and places assembly parts on the nearest table
-- 🛰️ **Satellite assembly** — interactive parts assembly with real-time weight distribution feedback
-- 🚀 **Rocket launch** — watch the rocket soar into the sky outdoors, or indoors where the **ceiling virtually segments to reveal space** 🌠
-- 🖥️ **Built entirely on M2 MacBook Pro** — no Windows, no Quest Link. Powered by the Meta XR Simulator
+- 🔍 **Room scanning**: the app scans the real environment and places assembly parts on the nearest table
+- 🛰️ **Satellite assembly**: interactive parts assembly with real-time weight distribution feedback
+- 🚀 **Rocket launch**: watch the rocket soar into the sky outdoors, or indoors where the **ceiling virtually segments to reveal space** 🌠
+- 🖥️ **Built entirely on M2 MacBook Pro**: no Windows, no Quest Link. Powered by the Meta XR Simulator
 
 ---
 
@@ -29,7 +29,7 @@ RetroSpace is a mixed reality application designed to enhance learning by simula
 
 ## The Sky Portal → Zenflow → FlowsXR
 
-The **ceiling-to-sky transformation** technique from RetroSpace — where the room's ceiling virtually opens up to reveal outer space — became the **foundational concept for Zenflow**, a VR meditation application that went on to receive an **Honorable Mention at CHI 2026**, and now serves as the **foundational software for FlowsXR**.
+The **ceiling-to-sky transformation** technique from RetroSpace, where the room's ceiling virtually opens up to reveal outer space, became the **foundational concept for Zenflow**, a VR meditation application that went on to receive an **Honorable Mention at CHI 2026**, and now serves as the **foundational software for FlowsXR**.
 
 ---
 
