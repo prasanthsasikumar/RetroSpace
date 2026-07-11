@@ -35,7 +35,7 @@ The **ceiling-to-sky transformation** technique from RetroSpace, where the room'
 
 ## Team
 
-![The RetroSpace team at XR Hack Istanbul 2024](docs/team.jpg)
+<img src="docs/team.jpg" alt="The RetroSpace team at XR Hack Istanbul 2024" width="320">
 
 Built by **[Prasanth Sasikumar](https://prasanthsasikumar.com)** ([@prasanthsasikumar](https://github.com/prasanthsasikumar)), **[Zelis Gamze Isik](https://uk.linkedin.com/in/zgisik)**, and **[Yusuf Ulufer](https://tr.linkedin.com/in/yusuf-ulufer-195791133)**.
 
